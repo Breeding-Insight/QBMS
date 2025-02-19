@@ -422,7 +422,7 @@ if (requireNamespace("async", quietly = TRUE)) {
 
 brapi_get_call <- function(call_url, nested = TRUE) {
   separator <- if (grepl("\\?", call_url)) "&" else "?"
-  full_url  <- paste0(call_url, separator, "page=0&pageSize=", qbms_globals$config$page_size)
+  full_url  <- paste0(call_url, separator, "page=0&pageSize=", format(qbms_globals$config$page_size, scientific = FALSE))
 
   headers  <- brapi_headers()
   response <- httr::GET(url = utils::URLencode(full_url),
@@ -442,7 +442,7 @@ brapi_get_call <- function(call_url, nested = TRUE) {
     }
     
     for (n in 1:last_page) {
-      full_url <- paste0(call_url, separator, "page=", n, "&pageSize=", qbms_globals$config$page_size)
+      full_url <- paste0(call_url, separator, "page=", n, "&pageSize=", format(qbms_globals$config$page_size, scientific = FALSE))
       response <- httr::GET(url = utils::URLencode(full_url),
                             httr::add_headers(headers),
                             httr::timeout(qbms_globals$config$time_out))
@@ -480,14 +480,14 @@ brapi_get_call <- function(call_url, nested = TRUE) {
 if (requireNamespace("async", quietly = TRUE)) {
   brapi_get_call <- function(call_url, nested = TRUE) {
     separator <- if (grepl("\\?", call_url)) "&" else "?"
-    full_url  <- paste0(call_url, separator, "page=0&pageSize=", qbms_globals$config$page_size)
+    full_url  <- paste0(call_url, separator, "page=0&pageSize=", format(qbms_globals$config$page_size, scientific = FALSE))
     
     result_object <- async::synchronise(get_async_page(full_url, nested))
     result_data   <- as.data.frame(result_object$result$data)
     total_pages   <- result_object$metadata$pagination$totalPages
     if (total_pages > 1) {
       pages <- c(seq(1, total_pages - 1))
-      full_urls <- paste0(call_url, separator, "page=", pages, "&pageSize=", qbms_globals$config$page_size)
+      full_urls <- paste0(call_url, separator, "page=", pages, "&pageSize=", format(qbms_globals$config$page_size, scientific = FALSE))
       all_pages <- async::synchronise(get_async_pages(full_urls, nested))
 
       for (n in 1:(total_pages - 1)) {
