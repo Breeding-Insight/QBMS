@@ -2,37 +2,29 @@
 % Please edit documentation in R/qbms.R
 \name{get_germplasm_data}
 \alias{get_germplasm_data}
-\title{Get the observations data of a given germplasm name in a crop}
+\title{Retrieve Observations Data for a Specified Germplasm.}
 \usage{
 get_germplasm_data(germplasm_name = "")
 }
 \arguments{
-\item{germplasm_name}{the name of the germplasm}
+\item{germplasm_name}{The name of the germplasm.}
 }
 \value{
-a data frame of the germplasm observations data aggregate from all trials
+A data frame containing all available observations data for the specified germplasm.
 }
 \description{
-This function will retrieve all the observations data available for a given germplasm
-in the current crop database regardless of the programs/trials nested structure.
+Retrieves all available observations data for the given germplasm in the current active crop.
+This data is aggregated across all trials in the crop database.
 }
 \examples{
-if(interactive()) {
-# config your BMS connection
-set_qbms_config("https://bmsdev-brapi.ibp.services/ibpworkbench")
-
-# login using your BMS account (interactive mode)
-# you can pass BMS username and password as parameters (batch mode)
-login_bms()
-
-set_crop("maize")
-
-# select a breeding program by name
-set_program("MC Maize")
-
-# retrive observations data of a given germplasm aggregated from all trials
-germplasm_observations <- get_germplasm_data("BASFCORN-2-1")
+if (interactive()) {
+  set_qbms_config("https://bms.icarda.org/ibpworkbench")
+  login_bms()
+  set_crop("wheat")
+  germplasm_observations <- get_germplasm_data("Jabal")
+  head(germplasm_observations)
 }
+
 }
 \seealso{
 \code{\link{login_bms}}, \code{\link{set_crop}}, \code{\link{get_germplasm_attributes}}

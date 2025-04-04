@@ -2,44 +2,34 @@
 % Please edit documentation in R/qbms.R
 \name{get_study_info}
 \alias{get_study_info}
-\title{Get the details/metadata of the current active study}
+\title{Get the Details/Metadata of the Current Active Study}
 \usage{
 get_study_info()
 }
 \value{
-a data frame of the study details/metadata
+A data frame containing the metadata of the active study. Returns \code{NULL} 
+if no study metadata is available.
 }
 \description{
-This function will retrieve the details/metadata of the current active study
-as configured in the internal state object using `set_study()` function.
+Retrieves detailed metadata for the currently active study. The study must be 
+set using the \code{\link{set_study}} function, and its details will be fetched 
+from the BrAPI server.
 }
 \examples{
-if(interactive()) {
-# config your BMS connection
-set_qbms_config("https://bmsdev-brapi.ibp.services/ibpworkbench")
-
-# login using your BMS account (interactive mode)
-# you can pass BMS username and password as parameters (batch mode)
-login_bms()
-
-set_crop("maize")
-
-# select a breeding program by name
-set_program("MC Maize")
-
-# select a specific study/trial by name
-set_trial("2018 PVT")
-
-# select a specific environment/location dataset
-set_study("2018 PVT Environment Number 1")
-
-# retrieve the general information of the selected environment/location
-info <- get_study_info()
+if (interactive()) {
+  set_qbms_config("https://bms.icarda.org/ibpworkbench")
+  login_bms()
+  set_crop("wheat")
+  set_program("Wheat International Nurseries")
+  set_trial("IDYT39")
+  set_study("IDYT39 Environment Number 9")
+  info <- get_study_info()
 }
+
 }
 \seealso{
-\code{\link{login_bms}}, \code{\link{set_crop}}, \code{\link{set_program}},
-         \code{\link{set_trial}}, \code{\link{set_study}}
+\code{\link{login_bms}}, \code{\link{set_crop}}, \code{\link{set_program}}, 
+\code{\link{set_trial}}, \code{\link{set_study}} for related crop and study management.
 }
 \author{
 Khaled Al-Shamaa, \email{k.el-shamaa@cgiar.org}

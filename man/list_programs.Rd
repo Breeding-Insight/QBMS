@@ -2,35 +2,28 @@
 % Please edit documentation in R/qbms.R
 \name{list_programs}
 \alias{list_programs}
-\title{Get the list of breeding programs names}
+\title{Retrieve Breeding Programs for the Active Crop}
 \usage{
 list_programs()
 }
 \value{
-a list of breeding programs names
+A data frame containing the names of breeding programs available for the active crop.
 }
 \description{
-This function will retrieve the breeding programs list from the current active
-crop as configured in the internal configuration object using `set_crop()`
-function.
+Retrieves the list of breeding programs available for the currently selected crop. 
+The crop must be set using the \code{\link{set_crop}} function prior to calling this.
 }
 \examples{
-if(interactive()) {
-# config your BMS connection
-set_qbms_config("https://bmsdev-brapi.ibp.services/ibpworkbench")
-
-# login using your BMS account (interactive mode)
-# you can pass BMS username and password as parameters (batch mode)
-login_bms()
-
-set_crop("maize")
-
-# list existing breeding programs
-list_programs()
+if (interactive()) {
+  set_qbms_config("https://bms.icarda.org/ibpworkbench")
+  login_bms()  # Log in to the server
+  set_crop("wheat")  # Set "wheat" as the active crop
+  list_programs()  # Retrieve breeding programs for the active crop
 }
+
 }
 \seealso{
-\code{\link{login_bms}}, \code{\link{set_crop}}
+\code{\link{login_bms}}, \code{\link{set_crop}}, \code{\link{list_crops}} for managing server connection and crop selection.
 }
 \author{
 Khaled Al-Shamaa, \email{k.el-shamaa@cgiar.org}

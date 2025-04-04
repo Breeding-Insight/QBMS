@@ -2,34 +2,29 @@
 % Please edit documentation in R/qbms.R
 \name{get_program_studies}
 \alias{get_program_studies}
-\title{Get the list of trials studies locations information of the current selected program}
+\title{Get the List of Trials, Studies, and Locations Information for the Current Selected Program}
 \usage{
 get_program_studies()
 }
 \value{
-a data frame of locations information for each study in the program trials
+A data frame containing detailed information for each study within the program's trials, 
+including trial names, study names, location information, and entry counts.
 }
 \description{
-This function will retrieve all environments/locations information of the trials studies in the
-current active program as configured in the internal state object using `set_program()` function.
+Retrieves comprehensive information about the trials, studies, and environments/locations
+within the current active breeding program, as configured in the internal state object using 
+the \code{\link{set_program}} function. This includes test and check entry counts for each study.
 }
 \examples{
-if(interactive()) {
-# config your BMS connection
-set_qbms_config("https://bmsdev-brapi.ibp.services/ibpworkbench")
-
-# login using your BMS account (interactive mode)
-# you can pass BMS username and password as parameters (batch mode)
-login_bms()
-
-set_crop("maize")
-
-# select a breeding program by name
-set_program("MC Maize")
-
-# retrive all environments/locations information in the selected program studies/trials
-program_studies <- get_program_studies()
+if (interactive()) {
+  set_qbms_config("https://bms.icarda.org/ibpworkbench")
+  login_bms()
+  set_crop("wheat")
+  set_program("Wheat International Nurseries")
+  program_studies <- get_program_studies()
+  head(program_studies)
 }
+
 }
 \seealso{
 \code{\link{login_bms}}, \code{\link{set_crop}}, \code{\link{set_program}}

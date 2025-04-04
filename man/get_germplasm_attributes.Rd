@@ -2,36 +2,27 @@
 % Please edit documentation in R/qbms.R
 \name{get_germplasm_attributes}
 \alias{get_germplasm_attributes}
-\title{Get germplasm attributes for a given germplasm in a crop}
+\title{Retrieve Attributes for a Specified Germplasm}
 \usage{
 get_germplasm_attributes(germplasm_name = "")
 }
 \arguments{
-\item{germplasm_name}{the name of the germplasm}
+\item{germplasm_name}{The name of the germplasm.}
 }
 \value{
-a data frame of the germplasm attributes
+A data frame containing the attributes associated with the specified germplasm.
 }
 \description{
-Get germplasm attributes for a given germplasm in a crop
+Retrieves a detailed list of attributes for a given germplasm, such as its origin, donors, and taxonomic information.
 }
 \examples{
-if(interactive()) {
-# config your BMS connection
-set_qbms_config("https://bmsdev-brapi.ibp.services/ibpworkbench")
-
-# login using your BMS account (interactive mode)
-# you can pass BMS username and password as parameters (batch mode)
-login_bms()
-
-set_crop("maize")
-
-# select a breeding program by name
-set_program("MC Maize")
-
-# retrive attributes data of a given germplasm in a crop
-germplasm_attributes <- get_germplasm_attributes("BASFCORN-2-1")
+if (interactive()) {
+  set_qbms_config("https://bms.icarda.org/ibpworkbench")
+  login_bms()
+  set_crop("wheat")
+  germplasm_attributes <- get_germplasm_attributes("Jabal")
 }
+
 }
 \seealso{
 \code{\link{login_bms}}, \code{\link{set_crop}}, \code{\link{get_germplasm_data}}

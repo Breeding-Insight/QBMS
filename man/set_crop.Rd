@@ -2,34 +2,30 @@
 % Please edit documentation in R/qbms.R
 \name{set_crop}
 \alias{set_crop}
-\title{Set the current active crop}
+\title{Set the Current Active Crop}
 \usage{
 set_crop(crop_name)
 }
 \arguments{
-\item{crop_name}{the name of the crop}
+\item{crop_name}{A string specifying the name of the crop to set as active.}
 }
 \value{
-no return value
+No return value. The function updates the global state with the selected crop.
 }
 \description{
-This function will update the current active crop in the internal
-configuration object (including the brapi connection object).
+Updates the internal configuration to set the selected crop as the active one. This 
+must be called before performing crop-specific operations such as retrieving breeding programs.
 }
 \examples{
-if(interactive()) {
-# config your BMS connection
-set_qbms_config("https://bmsdev-brapi.ibp.services/ibpworkbench")
-
-# login using your BMS account (interactive mode)
-# you can pass BMS username and password as parameters (batch mode)
-login_bms()
-
-set_crop("maize")
+if (interactive()) {
+  set_qbms_config("https://bms.icarda.org/ibpworkbench")
+  login_bms()  # Log in to the server
+  set_crop("wheat")  # Set "wheat" as the active crop
 }
+
 }
 \seealso{
-\code{\link{login_bms}}, \code{\link{list_crops}}
+\code{\link{login_bms}}, \code{\link{list_crops}} to validate and retrieve the list of supported crops.
 }
 \author{
 Khaled Al-Shamaa, \email{k.el-shamaa@cgiar.org}

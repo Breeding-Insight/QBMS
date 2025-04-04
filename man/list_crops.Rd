@@ -2,31 +2,28 @@
 % Please edit documentation in R/qbms.R
 \name{list_crops}
 \alias{list_crops}
-\title{Get the list of supported crops}
+\title{Retrieve Supported Crops from the Server}
 \usage{
 list_crops()
 }
 \value{
-a list of supported crops
+A character vector containing the names of supported crops.
 }
 \description{
-Get the list of supported crops
+Retrieves the list of crops supported by the connected server. If the crop 
+list is cached in the internal state, it returns the cached data; otherwise, it 
+sends a BrAPI GET request to fetch the crop list.
 }
 \examples{
-if(interactive()) {
-# config your BMS connection
-set_qbms_config("https://bmsdev-brapi.ibp.services/ibpworkbench")
-
-# login using your BMS account (interactive mode)
-# you can pass BMS username and password as parameters (batch mode)
-login_bms()
-
-# list supported crops in the bms server
-list_crops()
+if (interactive()) {
+  set_qbms_config("https://bms.icarda.org/ibpworkbench")
+  login_bms()  # Log in to the server
+  list_crops()  # Retrieve list of supported crops
 }
+
 }
 \seealso{
-\code{\link{login_bms}}
+\code{\link{login_bms}}, \code{\link{set_crop}} to configure and set the current active crop.
 }
 \author{
 Khaled Al-Shamaa, \email{k.el-shamaa@cgiar.org}

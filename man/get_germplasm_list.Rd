@@ -2,44 +2,33 @@
 % Please edit documentation in R/qbms.R
 \name{get_germplasm_list}
 \alias{get_germplasm_list}
-\title{Get the germplasm list of the current active study}
+\title{Get the Germplasm List of the Current Active Study}
 \usage{
 get_germplasm_list()
 }
 \value{
-a data frame of the study germplasm list
+A data frame containing the germplasm list for the active study.
 }
 \description{
-This function will retrieve the germplasm list of the current active study
-as configured in the internal state object using `set_study()` function.
+Retrieves the list of germplasm (genetic material) used in the currently active study, 
+which must be set using the \code{\link{set_study}} function.
 }
 \examples{
-if(interactive()) {
-# config your BMS connection
-set_qbms_config("https://bmsdev-brapi.ibp.services/ibpworkbench")
-
-# login using your BMS account (interactive mode)
-# you can pass BMS username and password as parameters (batch mode)
-login_bms()
-
-set_crop("maize")
-
-# select a breeding program by name
-set_program("MC Maize")
-
-# select a specific study/trial by name
-set_trial("2018 PVT")
-
-# select a specific environment/location dataset
-set_study("2018 PVT Environment Number 1")
-
-# retrieve the germplasm list of the selected environment/location
-germplasm <- get_germplasm_list()
+if (interactive()) {
+  set_qbms_config("https://bms.icarda.org/ibpworkbench")
+  login_bms()
+  set_crop("wheat")
+  set_program("Wheat International Nurseries")
+  set_trial("IDYT39")
+  set_study("IDYT39 Environment Number 9")
+  germplasm <- get_germplasm_list()
+  head(germplasm)
 }
+
 }
 \seealso{
 \code{\link{login_bms}}, \code{\link{set_crop}}, \code{\link{set_program}}, 
-         \code{\link{set_trial}}, \code{\link{set_study}}
+\code{\link{set_trial}}, \code{\link{set_study}} for related operations on crops and studies.
 }
 \author{
 Khaled Al-Shamaa, \email{k.el-shamaa@cgiar.org}

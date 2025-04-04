@@ -2,40 +2,32 @@
 % Please edit documentation in R/qbms.R
 \name{get_trial_obs_ontology}
 \alias{get_trial_obs_ontology}
-\title{Get the traits ontology/metadata of the current active trial}
+\title{Get the Traits Ontology/Metadata of the Current Active Trial}
 \usage{
 get_trial_obs_ontology()
 }
 \value{
-a data frame of the traits ontology/metadata
+A data frame containing the traits ontology or metadata, filtered by the observation 
+variables used in the current trial.
 }
 \description{
-This function will retrieve the traits ontology/metadata of the current active
-trial as configured in the internal state object using `set_trial()` function.
+Retrieves the traits ontology or metadata for the current active trial, which 
+includes detailed information about the observation variables used in the trial.
 }
 \examples{
-if(interactive()) {
-# config your BMS connection
-set_qbms_config("https://bmsdev-brapi.ibp.services/ibpworkbench")
-
-# login using your BMS account (interactive mode)
-# you can pass BMS username and password as parameters (batch mode)
-login_bms()
-
-set_crop("maize")
-
-# select a breeding program by name
-set_program("MC Maize")
-
-# select a specific study/trial by name
-set_trial("2018 PVT")
-
-# get observation variable ontology
-ontology <- get_trial_obs_ontology()
+if (interactive()) {
+  set_qbms_config("https://bms.icarda.org/ibpworkbench")
+  login_bms()
+  set_crop("wheat")
+  set_program("Wheat International Nurseries")
+  set_trial("IDYT39")
+  ontology <- get_trial_obs_ontology()
 }
+
 }
 \seealso{
-\code{\link{login_bms}}, \code{\link{set_crop}}, \code{\link{set_program}}, \code{\link{set_trial}}
+\code{\link{login_bms}}, \code{\link{set_crop}}, \code{\link{set_program}}, \code{\link{set_trial}}, 
+\code{\link{get_study_data}} for retrieving study observations.
 }
 \author{
 Khaled Al-Shamaa, \email{k.el-shamaa@cgiar.org}

@@ -2,44 +2,38 @@
 % Please edit documentation in R/qbms.R
 \name{list_trials}
 \alias{list_trials}
-\title{Get the list of trials in the current active breeding program}
+\title{List Trials in the Current Active Breeding Program}
 \usage{
 list_trials(year = NULL)
 }
 \arguments{
-\item{year}{the starting year to filter the list of trials (optional, default is NULL)}
+\item{year}{Numeric. An optional parameter to filter trials by their starting year. 
+If not provided, all trials for the active program are returned.}
 }
 \value{
-a list of trials names
+A data frame containing the names of trials for the active breeding program. If no 
+trials match the query, a warning is issued, and NA is returned.
 }
 \description{
-This function will retrieve the trials list from the current active breeding
-program as configured in the internal state object using `set_program()`
-function.
+Retrieves the list of trials for the current active breeding program. Optionally, 
+filters trials by their starting year if specified.
+}
+\note{
+The year filter is only supported for BMS databases.
 }
 \examples{
-if(interactive()) {
-# config your BMS connection
-set_qbms_config("https://bmsdev-brapi.ibp.services/ibpworkbench")
-
-# login using your BMS account (interactive mode)
-# you can pass BMS username and password as parameters (batch mode)
-login_bms()
-
-set_crop("maize")
-
-# select a breeding program by name
-set_program("MC Maize")
-
-# list all studies/trials in the selected program
-list_trials()
-
-# filter listed studies/trials by year
-list_trials(2020)
+if (interactive()) {
+  set_qbms_config("https://bms.icarda.org/ibpworkbench")
+  login_bms()  # Log in to the server
+  set_crop("wheat")  # Set crop
+  set_program("Wheat International Nurseries")  # Set breeding program
+  list_trials()  # List trials
+  list_trials(2022)  # List trials starting in 2022
 }
+
 }
 \seealso{
-\code{\link{login_bms}}, \code{\link{set_crop}}, \code{\link{set_program}}
+\code{\link{login_bms}}, \code{\link{set_crop}}, \code{\link{set_program}} for related operations involving crop and program selection.
 }
 \author{
 Khaled Al-Shamaa, \email{k.el-shamaa@cgiar.org}

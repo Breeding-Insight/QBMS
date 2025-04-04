@@ -2,38 +2,32 @@
 % Please edit documentation in R/qbms.R
 \name{set_program}
 \alias{set_program}
-\title{Set the current active breeding program}
+\title{Set the Current Active Breeding Program}
 \usage{
 set_program(program_name)
 }
 \arguments{
-\item{program_name}{the name of the breeding program}
+\item{program_name}{A string specifying the name of the breeding program to set as active.}
 }
 \value{
-no return value
+No return value. The internal state is updated with the selected program.
 }
 \description{
-This function will update the current active breeding program in the
-internal state object using the programDbId retrieved from BMS which is
-associated to the given program_name parameter.
+Updates the internal state to set the selected breeding program as active using the 
+associated programDbId. This allows subsequent operations to be carried out 
+within the context of this program.
 }
 \examples{
-if(interactive()) {
-# config your BMS connection
-set_qbms_config("https://bmsdev-brapi.ibp.services/ibpworkbench")
-
-# login using your BMS account (interactive mode)
-# you can pass BMS username and password as parameters (batch mode)
-login_bms()
-
-set_crop("maize")
-
-# select a breeding program by name
-set_program("MC Maize")
+if (interactive()) {
+  set_qbms_config("https://bms.icarda.org/ibpworkbench")
+  login_bms()  # Log in to the server
+  set_crop("wheat")  # Set crop
+  set_program("Wheat International Nurseries")  # Set breeding program
 }
+
 }
 \seealso{
-\code{\link{login_bms}}, \code{\link{set_crop}}, \code{\link{list_programs}}
+\code{\link{login_bms}}, \code{\link{set_crop}}, \code{\link{list_programs}} for related operations in the crop and program selection process.
 }
 \author{
 Khaled Al-Shamaa, \email{k.el-shamaa@cgiar.org}

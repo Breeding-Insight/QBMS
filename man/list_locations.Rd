@@ -2,19 +2,19 @@
 % Please edit documentation in R/qbms.R
 \name{list_locations}
 \alias{list_locations}
-\title{Get the list of locations information of the current selected crop}
+\title{Get the List of Locations Information of the Current Selected Crop}
 \usage{
 list_locations()
 }
 \value{
-a data frame of the locations information
+A data frame containing information about locations relevant to the current crop.
 }
 \description{
-This function will retrieve the locations information of the current active crop
-as configured in the internal state object using `set_crop()` function.
+Retrieves a list of locations associated with the current active crop, as 
+configured in the internal state object using the \code{\link{set_crop}} function.
 }
 \seealso{
-\code{\link{login_bms}}, \code{\link{set_crop}}
+\code{\link{login_bms}}, \code{\link{set_crop}} for related crop operations.
 }
 \author{
 Khaled Al-Shamaa, \email{k.el-shamaa@cgiar.org}

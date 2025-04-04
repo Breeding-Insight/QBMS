@@ -2,41 +2,30 @@
 % Please edit documentation in R/qbms.R
 \name{get_trial_data}
 \alias{get_trial_data}
-\title{Get the observations data of the current active trial}
+\title{Get the Observations Data of the Current Active Trial}
 \usage{
 get_trial_data()
 }
 \value{
-a data frame of the trial observations data
+A data frame containing the combined observations data from all studies in the active trial.
 }
 \description{
-This function will retrieve the observations data of the current active trial
-(i.e. including all studies within) as configured in the internal state
-object using `set_trial()` function.
+Retrieves the combined observations data (including all studies) for the current 
+active trial, as configured in the internal state object using the \code{\link{set_trial}} function. 
+This function iterates over all studies within the active trial and aggregates 
+their observation data.
 }
 \examples{
-if(interactive()) {
-# config your BMS connection
-set_qbms_config("https://bmsdev-brapi.ibp.services/ibpworkbench")
-
-# login using your BMS account (interactive mode)
-# you can pass BMS username and password as parameters (batch mode)
-login_bms()
-
-set_crop("maize")
-
-# select a breeding program by name
-set_program("MC Maize")
-
-# select a specific study/trial by name
-set_trial("2018 PVT")
-
-# select a specific environment/location dataset
-set_study("2018 PVT Environment Number 1")
-
-# retrive multi-environment trial data
-MET <- get_trial_data()
+if (interactive()) {
+  set_qbms_config("https://bms.icarda.org/ibpworkbench")
+  login_bms()
+  set_crop("wheat")
+  set_program("Wheat International Nurseries")
+  set_trial("IDYT39")
+  MET <- get_trial_data()
+  head(MET)
 }
+
 }
 \seealso{
 \code{\link{login_bms}}, \code{\link{set_crop}}, \code{\link{set_program}}, \code{\link{set_trial}}

@@ -2,45 +2,33 @@
 % Please edit documentation in R/qbms.R
 \name{set_study}
 \alias{set_study}
-\title{Set the current active study by location name}
+\title{Set the Current Active Study}
 \usage{
 set_study(study_name)
 }
 \arguments{
-\item{study_name}{the name of the study}
+\item{study_name}{A string specifying the name of the study to set as active.}
 }
 \value{
-no return value
+No return value. The internal state is updated with the selected study.
 }
 \description{
-This function will update the current active study in the internal state
-object using the studyDbId retrieved from BMS which is associated to the
-given study_name parameter.
+Updates the internal state to set the selected study as the current active study using the 
+associated studyDbId. This allows operations to be performed within the context of the selected study.
 }
 \examples{
-if(interactive()) {
-# config your BMS connection
-set_qbms_config("https://bmsdev-brapi.ibp.services/ibpworkbench")
-
-# login using your BMS account (interactive mode)
-# you can pass BMS username and password as parameters (batch mode)
-login_bms()
-
-set_crop("maize")
-
-# select a breeding program by name
-set_program("MC Maize")
-
-# select a specific study/trial by name
-set_trial("2018 PVT")
-
-# select a specific environment/location dataset
-set_study("2018 PVT Environment Number 1")
+if (interactive()) {
+  set_qbms_config("https://bms.icarda.org/ibpworkbench")
+  login_bms()  # Log in to the server
+  set_crop("wheat")  # Set crop
+  set_program("Wheat International Nurseries")  # Set breeding program
+  set_trial("IDYT39")  # Set trial
+  set_study("IDYT39 Environment Number 9")  # Set study
 }
+ 
 }
 \seealso{
-\code{\link{login_bms}}, \code{\link{set_crop}}, \code{\link{set_program}},
-         \code{\link{set_trial}}, \code{\link{list_studies}}
+\code{\link{login_bms}}, \code{\link{set_crop}}, \code{\link{set_program}}, \code{\link{set_trial}}, \code{\link{list_studies}} for related operations on crops, programs, trials, and studies.
 }
 \author{
 Khaled Al-Shamaa, \email{k.el-shamaa@cgiar.org}
