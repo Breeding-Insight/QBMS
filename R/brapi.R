@@ -359,8 +359,7 @@ set_qbms_config <- function(url = "http://localhost",
   
   if (engine == "bms") { qbms_globals$config$crop <- NULL }
   
-  #qbms_globals$config$server    <- regmatches(url, regexpr("^(?://|[^/]+)*", url))
-  qbms_globals$config$server    <- url
+  qbms_globals$config$server    <- if(engine == "deltabreed") url else regmatches(url, regexpr("^(?://|[^/]+)*", url))
   qbms_globals$config$path      <- path
   qbms_globals$config$page_size <- page_size
   qbms_globals$config$time_out  <- time_out

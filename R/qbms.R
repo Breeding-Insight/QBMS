@@ -520,7 +520,6 @@ get_study_info <- function() {
 #' }
 #' 
 #' @export
-
 get_study_data <- function() {
   if (is.null(qbms_globals$state$study_db_id)) {
     stop("No study has been selected yet! You have to set your study first using the `set_study()` function")
@@ -539,7 +538,30 @@ get_study_data <- function() {
   
   study_data   <- as.data.frame(study_result$data)
   
-  if (qbms_globals$config$engine == "breedbase") {
+  if (qbms_globals$config$engine == "deltabreed" && qbms_globals$config$brapi_ver == "v1") {
+    study_header <- c(study_result$headerRow, 
+                      study_result$observationVariableNames)
+    
+    header_length <- length(study_result$headerRow)
+    var_length <- length(study_result$observationVariableNames)
+    
+    # merge rows based on unique header information
+    study_data <- aggregate(study_data[, (header_length+1):(header_length+var_length)], 
+                            by = study_data[, 1:header_length], FUN = function(x) x[!is.na(x)])
+    
+    
+  } else if (qbms_globals$config$engine == "deltabreed" && qbms_globals$config$brapi_ver == "v2"){
+    study_header <- c(study_result$headerRow, 
+                      study_result$observationVariables$observationVariableName)
+    
+    header_length <- length(study_result$headerRow)
+    var_length <- length(study_result$observationVariables$observationVariableName)
+    
+    # merge rows based on unique header information
+    study_data <- aggregate(study_data[, (header_length+1):(header_length+var_length)], 
+                            by = study_data[, 1:header_length], FUN = function(x) x[!is.na(x)])
+
+  } else  if (qbms_globals$config$engine == "breedbase") {
     study_header <- study_data[1, ]
     study_data   <- study_data[-1, ]
     
