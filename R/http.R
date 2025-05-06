@@ -128,7 +128,7 @@ get_async_pages <- function(pages, nested) {
 
 brapi_get_call <- function(call_url, nested = TRUE) {
   separator <- if (grepl("\\?", call_url)) "&" else "?"
-  full_url  <- paste0(call_url, separator, "page=0&pageSize=", qbms_globals$config$page_size)
+  full_url  <- paste0(call_url, separator, "page=0&pageSize=", format(qbms_globals$config$page_size, scientific = FALSE))
   
   # Fetch the first page synchronously to get total number of pages
   result_future <- get_async_page(full_url, nested)
@@ -138,7 +138,7 @@ brapi_get_call <- function(call_url, nested = TRUE) {
   
   if (total_pages > 1) {
     pages <- seq(1, total_pages - 1)
-    full_urls <- paste0(call_url, separator, "page=", pages, "&pageSize=", qbms_globals$config$page_size)
+    full_urls <- paste0(call_url, separator, "page=", pages, "&pageSize=", format(qbms_globals$config$page_size, scientific = FALSE))
     
     # Fetch remaining pages asynchronously
     all_pages <- get_async_pages(full_urls, nested)

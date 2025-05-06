@@ -547,7 +547,7 @@ get_study_data <- function() {
     
     # merge rows based on unique header information
     study_data <- aggregate(study_data[, (header_length+1):(header_length+var_length)], 
-                            by = study_data[, 1:header_length], FUN = function(x) x[!is.na(x)])
+                            by = study_data[, 1:header_length], FUN = function(x) x[!(is.na(x) | x == "")])
     
     
   } else if (qbms_globals$config$engine == "deltabreed" && qbms_globals$config$brapi_ver == "v2"){
@@ -559,7 +559,7 @@ get_study_data <- function() {
     
     # merge rows based on unique header information
     study_data <- aggregate(study_data[, (header_length+1):(header_length+var_length)], 
-                            by = study_data[, 1:header_length], FUN = function(x) x[!is.na(x)])
+                            by = study_data[, 1:header_length], FUN = function(x) x[!(is.na(x) | x == "")])
 
   } else  if (qbms_globals$config$engine == "breedbase") {
     study_header <- study_data[1, ]
